@@ -1,19 +1,21 @@
 package com.ds.array;
 
+import java.util.Arrays;
+
 public class Array_Intro {
     public static void main(String[] args) {
 
         //1
         int[] consOnes = new int[]{1,0,1,1,1,0,1,1};
-        //System.out.println(consecutiveOnes(consOnes));
+        System.out.println(consecutiveOnes(consOnes));
 
         //2
         int[] evenDigitsArray = new int[]{123,1001,66,1};
-        //System.out.println(findNumbers(evenDigitsArray));
+        System.out.println(findNumbers(evenDigitsArray));
 
         //3
         int[] squaredArray = new int[]{-4,-1,0,3,6};
-        System.out.println(sortedSquares(squaredArray));
+        System.out.println(Arrays.toString(sortedSquares(squaredArray)));
 
     }
 
@@ -41,14 +43,14 @@ public class Array_Intro {
     // Given an array nums of integers, return how many of them contain an even number of digits.
     static int findNumbers(int[] input) {
         int count=0;
-        for(int i=0; i<input.length;i++){
-            int num = input[i];
-            int evenCounter=0;
-            while(num != 0){
+        for (int j : input) {
+            int num = j;
+            int evenCounter = 0;
+            while (num != 0) {
                 num = num / 10;
                 evenCounter++;
             }
-            if(evenCounter % 2 == 0){
+            if (evenCounter % 2 == 0) {
                 count++;
             }
         }
@@ -61,13 +63,14 @@ public class Array_Intro {
     static int consecutiveOnes(int[] arr){
         int count = 0;
         int maxCount = 0;
-        for(int i=0; i<arr.length;i++) {
-            if (arr[i] == 1) {
+        for (int j : arr) {
+            if (j == 1) {
                 count++;
             } else {
                 count = 0;
             }
-            maxCount = count > maxCount ? count : maxCount;
+           // maxCount = count > maxCount ? count : maxCount;
+            maxCount = Math.max(maxCount, count);
         }
         return maxCount;
     }
