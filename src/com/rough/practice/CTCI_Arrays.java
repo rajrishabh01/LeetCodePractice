@@ -56,7 +56,7 @@ public class CTCI_Arrays {
     }
 
 
-    //No 1 Check Unique Characters in a String
+    //No 1 Check Unique Characters in a String --1
     private static boolean uniqueCharacterString(String uniqueTestString) {
         boolean[] uniqueCheck = new boolean[128];
         for (char c : uniqueTestString.toCharArray()) {
