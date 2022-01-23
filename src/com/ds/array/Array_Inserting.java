@@ -13,7 +13,7 @@ public class Array_Inserting {
     //Duplicate Zeroes
     static int[] duplicateZeroes(int[] input){
         int shift=0;
-        for(i=0; i+shift < input.length;++i){
+        for(int i=0; i+shift < input.length;++i){
             if(input[i]==0){
                 shift+=1;
             }
