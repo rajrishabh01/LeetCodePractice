@@ -24,6 +24,82 @@ public class CTCI_Arrays {
         //No 4 Palindrome Permuation Check
         String palindrome="Tact coa";
         System.out.println("This string is a palindrome permutation : " + palindromePermCheck(palindrome));
+
+        //No 5 One Away
+        String correct = "pale";
+        String incorrect = "ble";
+        System.out.println("This string is one edit, insert or remove away - " + oneAway(correct,incorrect));
+
+        //No 6 String Compression
+        String unCompressed = "aabbbcccc";
+        System.out.println("The compressed version of this string is - " + stringCompression(unCompressed));
+
+        //No 7 Rotate Matrix
+        int matrix[][]= {
+            {1,2,3},
+            {4,5,6}, {7,8,9}
+        };
+
+        //System.out.println("Rotate Matrix - " + rotateMatrix(matrix));
+    }
+
+    /*private static boolean rotateMatrix(int[][] matrix) {
+        if(matrix.length != matrix[0].length) return false;
+        int n = matrix.length;
+
+        for(int layer=0; layer < n/2 ;layer++){
+            int first = layer;
+            int last = n-1-layer;
+            for(int i = first; i < last;i++){
+
+            }
+        }
+    }*/
+
+    private static String stringCompression(String unCompressed) {
+        StringBuilder compressed = new StringBuilder();
+        int countConsecutive = 0;
+
+        for(int i=0; i < unCompressed.length();i++){
+            countConsecutive++;
+
+            if(i+1 >= unCompressed.length()|| unCompressed.charAt(i) != unCompressed.charAt(i+1)){
+                compressed.append(unCompressed.charAt(i));
+                compressed.append(countConsecutive);
+                countConsecutive = 0;
+            }
+        }
+
+        return unCompressed.length() < compressed.length() ? unCompressed : compressed.toString();
+    }
+
+    private static boolean oneAway(String correct, String incorrect) {
+        if(Math.abs(correct.length() - incorrect.length()) > 1){
+            return false;
+        }
+        String shorter = correct.length() < incorrect.length() ? correct : incorrect;
+        String longer = correct.length() < incorrect.length() ? incorrect : correct;
+
+        int indexA = 0;
+        int indexB = 0;
+        boolean foundDifference= false;
+        while(indexA < shorter.length() && indexB < longer.length()){
+            if(shorter.charAt(indexA) != longer.charAt(indexB)){
+                if(foundDifference) return false; //found second difference, not one edit away
+                foundDifference = true;
+
+                //replace check
+                if(shorter.length() == longer.length()){
+                    indexA++;
+                }
+            } else {
+                //Simply move to next index if elements match
+                indexA++;
+            }
+            //Default move to next index if elements match/don't match
+            indexB++;
+        }
+        return true;
     }
 
     //No 4 Palindrome Check
