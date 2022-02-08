@@ -5,7 +5,22 @@ public class Array_InPlace {
         //1 Replace with greatest
         int[] replaceGreatestInput = {19, 18, 7, 4, 3};
         System.out.println("The greatest values to the right of original - "
-        + replaceGreatest(replaceGreatestInput).toString());
+        + replaceGreatest(replaceGreatestInput));
+
+        //2 A Better Repeated Deletion Algorithm
+        int[] inPlaceDeletionArray = {0,0,0,1,1,1,2,2};
+        System.out.println("In place deletion of duplicates - "
+                + inPlaceDeletion(inPlaceDeletionArray));
+    }
+
+    //2 In Place Deletion of duplicates
+    private static int inPlaceDeletion(int[] ip) {
+        int count = 1;
+        for(int i=1;i<ip.length;i++){
+            if(ip[i-1]!=ip[i])
+                ip[count++]=ip[i];
+        }
+        return count;
     }
 
     //1 Replace with greatest
