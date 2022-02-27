@@ -1,6 +1,10 @@
 package com.ds.linkedLists;
 
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 public class MyLinkedList {
     class Node {
         int value;
@@ -22,7 +26,7 @@ public class MyLinkedList {
     }
 
     /** Get the value of the index-th node in the linked list. If the index is invalid, return -1. */
-    public int get(int index) {
+    public int getVal(int index) {
         if(index >= size){
             return -1;
         }
@@ -32,6 +36,19 @@ public class MyLinkedList {
             index--;
         }
         return node.value;
+    }
+
+    /** Get the Node of the index-th node in the linked list. If the index is invalid, return -1. */
+    public Node getNode(int index) {
+        if(index >= size){
+            return null;
+        }
+        Node node = head;
+        while(index > 0){
+            node = node.next;
+            index--;
+        }
+        return node;
     }
 
     /** Add a node of value val before the first element of the linked list. After the insertion, the new node will be the first node of the linked list. */
@@ -106,6 +123,20 @@ public class MyLinkedList {
     public void deleteAtHead(){
         head = head.next;
         size--;
+    }
+
+    public void showLinkedList(){
+        List<Integer> valList = new ArrayList<>();
+        if(head == null){
+            return;
+        }
+        Node node = head;
+        while(null != node){
+            valList.add(node.value);
+            node = node.next;
+        }
+
+        System.out.println(valList);
     }
 
 }
