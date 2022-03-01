@@ -2,11 +2,10 @@ package com.ds.linkedLists;
 
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 public class MyLinkedList {
-    class Node {
+    static class Node {
         int value;
         Node next;
 
@@ -75,7 +74,7 @@ public class MyLinkedList {
     }
 
     /** Add a node of value val before the index-th node in the linked list. If index equals to the length of linked list, the node will be appended to the end of linked list. If index is greater than the length, the node will not be inserted. */
-    public void addAtIndex(int index, int val) {
+    public void addAtIndex(int index, Integer val) {
         if(index > size){
             return;
         }
