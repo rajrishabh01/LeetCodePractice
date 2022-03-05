@@ -23,19 +23,19 @@ public class LinkedListClassics {
     }
 
     //2 Remove Linked List Element - Iterative
-    private static MyLinkedList.Node removeValLL(MyLinkedList.Node head, int removeVal) {
-        MyLinkedList.Node fakeHead = new MyLinkedList.Node(-1);
-        fakeHead.next = head;
+    private static MyLinkedList.Node removeValLL(MyLinkedList.Node head, int val) {
+        if(head != null && head.value == val)
+            head = head.next;
 
-        MyLinkedList.Node previous = head, current = head;
-        while(current != null){
-            if(current.value == removeVal){
-                previous.next = current.next;
-            } else
-                previous = previous.next;
-            current = current.next;
+        MyLinkedList.Node pointer = head;
+        while(pointer != null && pointer.next != null){
+            if(pointer.next.value == val)
+                pointer.next = pointer.next.next;
+            else
+                pointer = pointer.next;
+
         }
-        return fakeHead.next;
+        return head;
     }
 
     //2 Remove Linked List Element - Recursive
