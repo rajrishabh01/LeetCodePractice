@@ -10,11 +10,43 @@ public class LinkedListClassics {
         list.addAtIndex(2, 3);
         list.addAtIndex(3, 4);
         list.addAtIndex(4, 5);
+        list.addAtIndex(5, 4);
         list.showLinkedList();
 
         //1 Reverse the LL
-        System.out.println("Reversing the given list -" + reverseLL(list.getNode(0)));
+        /*System.out.println("Reversing the given list -" + reverseLL(list.getNode(0)));
+        list.showLinkedList();*/
 
+        //2 Remove Linked List Element
+        System.out.println("Removing the val from LL - " + removeValLL(list.getNode(0), 5));
+        list.showLinkedList();
+    }
+
+    //2 Remove Linked List Element - Iterative
+    private static MyLinkedList.Node removeValLL(MyLinkedList.Node head, int removeVal) {
+        MyLinkedList.Node fakeHead = new MyLinkedList.Node(-1);
+        fakeHead.next = head;
+
+        MyLinkedList.Node previous = head, current = head;
+        while(current != null){
+            if(current.value == removeVal){
+                previous.next = current.next;
+            } else
+                previous = previous.next;
+            current = current.next;
+        }
+        return fakeHead.next;
+    }
+
+    //2 Remove Linked List Element - Recursive
+    private static MyLinkedList.Node removeValLLRecursive(MyLinkedList.Node head, int removeVal) {
+        if(head == null){
+            return null;
+        }
+        MyLinkedList.Node next = removeValLLRecursive(head.next, removeVal);
+        if(head.value == removeVal) return next;
+        head.next = next;
+        return head;
     }
 
     // Reverse LL - Iterative
