@@ -31,10 +31,14 @@ public class LinkedListClassics {
     // 4 Palindrome LL
     private static boolean palindromeLL(MyLinkedList.Node head) {
         MyLinkedList.Node slow = head, fast = head, prev, temp;
+
+        //Maintain fast and slow till slow is middle and fast is end
         while (fast != null && fast.next != null) {
             slow = slow.next;
             fast = fast.next.next;
         }
+
+        //start reversing from slow till end
         prev = slow;
         slow = slow.next;
         prev.next = null;
@@ -46,6 +50,8 @@ public class LinkedListClassics {
         }
         fast = head;
         slow = prev;
+
+        //Compare the first and second half
         while (slow != null) {
             if (fast.value != slow.value) return false;
             fast = fast.next;
@@ -53,7 +59,6 @@ public class LinkedListClassics {
         }
         return true;
     }
-
 
     // 3 Odd even LL
     private static MyLinkedList.Node oddEvenLL(MyLinkedList.Node head) {
