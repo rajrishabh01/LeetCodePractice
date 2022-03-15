@@ -1,117 +1,88 @@
 package com.ds.linkedLists;
 
-
+//Doubly Linked List
 public class MyLinkedListRevision {
-    class Node {
-        int value;
-        Node next;
+    class ListNode {
+        int val;
+        ListNode next;
+        ListNode pre;
 
-        Node(int value) {
-            this.value = value;
+        ListNode(int value) {
+            this.val = value;
         }
     }
 
-    private Node head;
-    private Node tail;
-    private int length;
+    ListNode head, tail;
+    int size;
 
+    /**
+     * Initialize your data structure here.
+     */
     public MyLinkedListRevision() {
-        head = null;
-        tail = null;
-        length = 0;
+        head = new ListNode(0);
+        tail = new ListNode(0);
+        head.next = tail;
+        tail.pre = head;
     }
 
+    /**
+     * Get the value of the index-th node in the linked list. If the index is invalid, return -1.
+     */
     public int get(int index) {
-        if (index >= length) {
-            return -1;
+        if (index < 0 || index >= size) return -1;
+        ListNode curr = head;
+        for (int i = 0; i <= index; i++) {
+            curr = curr.next;
         }
-
-        Node node = head;
-        while (index > 0) {
-            node = node.next;
-            index--;
-        }
-        return node.value;
+        return curr.val;
     }
 
-    public void addAtHead(int value) {
-        Node node = new Node(value);
-        if (head == null) {
-            head = node;
-            return;
-        }
-
-        node.next = head;
-        head = node;
-        if (tail == null) {
-            tail = head;
-        }
-        length++;
+    /**
+     * Add a node of value val before the first element of the linked list. After the insertion, the new node will be the first node of the linked list.
+     */
+    public void addAtHead(int val) {
+        addAtIndex(0, val);
     }
 
-    public void addAtTail(int value){
-        if(head == null){
-            addAtHead(value);
-            return;
-        }
-
-        Node newNode = new Node(value);
-        tail.next = newNode;
-        tail = newNode;
-        length++;
+    /**
+     * Append a node of value val to the last element of the linked list.
+     */
+    public void addAtTail(int val) {
+        addAtIndex(size, val);
     }
 
-    public void addAtIndex(int value, int index){
-        if(index == length){
-            addAtTail(value);
-            return;
+    /**
+     * Add a node of value val before the index-th node in the linked list. If index equals to the length of linked list, the node will be appended to the end of linked list. If index is greater than the length, the node will not be inserted.
+     */
+    public void addAtIndex(int index, int val) {
+        if (index < 0 || index > size) return;
+        ListNode curr = head;
+        for (int i = 0; i < index; i++) {
+            curr = curr.next;
         }
-
-        if(index == 0){
-            addAtHead(value);
-            return;
-        }
-
-        if(index > length){
-            return;
-        }
-
-        Node newNode = new Node(value);
-        Node node = head;
-        while (null != node && index > 1){
-            node = node.next;
-            index--;
-        }
-        newNode.next = node.next;
-        node.next = newNode;
-        length++;
+        ListNode newNode = new ListNode(val);
+        newNode.next = curr.next;
+        newNode.next.pre = newNode;
+        curr.next = newNode;
+        newNode.pre = curr;
+        size++;
     }
 
-    public void deleteAtIndex(int index){
-        if(index >= length){
-            return;
-        }
-        if(index == 0){
-            deleteAtHead();
-            return;
-        }
 
-        Node node = head;
-        while (null != node && index > 1){
-            node = node.next;
-            index--;
+    /**
+     * Delete the index-th node in the linked list, if the index is valid.
+     */
+    public void deleteAtIndex(int index) {
+        if (index < 0 || index >= size) return;
+        ListNode curr = head;
+        for (int i = 0; i <= index; i++) {
+            curr = curr.next;
         }
-
-        node.next = node.next.next;
-        if(node.next == null){
-            tail = node;
-        }
-        length--;
+        // delete curr;
+        curr.next.pre = curr.pre;
+        curr.pre.next = curr.next;
+        size--;
     }
-
-    public void deleteAtHead() {
-        head = head.next;
-        length--;
-    }
-
 }
+
+
