@@ -1,11 +1,17 @@
 package com.ds.linkedLists;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class LLConclusion {
     public static void main(String[] args) {
         MyLinkedList linkedList1 = new MyLinkedList();
         linkedList1.addAtHead(1);
-        linkedList1.addAtIndex(1, 9);
-        linkedList1.addAtIndex(2, 1);
+        linkedList1.addAtIndex(1, 2);
+        linkedList1.addAtIndex(2, 3);
+        linkedList1.addAtIndex(3, 4);
+        linkedList1.addAtIndex(4, 5);
+
         linkedList1.showLinkedList();
 
         MyLinkedList linkedList2 = new MyLinkedList();
@@ -23,11 +29,65 @@ public class LLConclusion {
         //2 Add Two Numbers in LL
         System.out.println("Add two numbers from 2 LLs - " +
                 addTwoNumbersLL(linkedList1.getNode(0), linkedList2.getNode(0)));
+        linkedList1.showLinkedList();
 
         //3 Flatten Multinode LL - Create Child Nodes later
         System.out.println("Flatter the list - " + "Insert flatten method");
 
+        //4 Copy Random LL
+        System.out.println("LL with Random nodes and next being copied");
+
+        //5 Rotate LL
+        System.out.println("rotate a normal LL by i " + rotateLL(linkedList1.getNode(0), 2));
+        linkedList1.showLinkedList();
+
     }
+
+    //5 Rotate LL
+    private static MyLinkedList.Node rotateLL(MyLinkedList.Node head, int n) {
+        if (head==null||head.next==null) return head;
+        MyLinkedList.Node dummy=new MyLinkedList.Node(0);
+        dummy.next=head;
+        MyLinkedList.Node fast=dummy,slow=dummy;
+
+        int i;
+        for (i=0;fast.next!=null;i++)//Get the total length
+            fast=fast.next;
+
+        for (int j=i-n%i;j>0;j--) //Get the i-n%i th node
+            slow=slow.next;
+
+        fast.next=dummy.next; //Do the rotation
+        dummy.next=slow.next;
+        slow.next=null;
+
+        return dummy.next;
+    }
+
+    //4 Copy Random LL
+    private static MyLinkedListRandom.Node flatterMultiLevel(MyLinkedListRandom.Node head) {
+        if (head == null) return null;
+
+        Map<MyLinkedListRandom.Node, MyLinkedListRandom.Node> map = new HashMap<>();
+        MyLinkedListRandom.Node newNode = head;
+
+        //Put Map with new nodes corresponding to original
+        while (newNode != null) {
+            map.put(newNode, new MyLinkedListRandom.Node(newNode.value));
+            newNode = newNode.next;
+        }
+
+        //Now start assigning values next and random same as original
+        newNode = head;
+        while (newNode != null) {
+            map.get(newNode).next = map.get(newNode.next);
+            map.get(newNode).random = map.get(newNode.random);
+            newNode = newNode.next;
+        }
+
+        return map.get(head);
+    }
+
 
     //3 Flatten Multinode LL
     private static MyLinkedListChild.Node flatterMultiLevel(MyLinkedListChild.Node head) {
