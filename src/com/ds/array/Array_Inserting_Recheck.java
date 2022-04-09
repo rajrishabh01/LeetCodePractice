@@ -2,7 +2,8 @@ package com.ds.array;
 
 import java.util.Arrays;
 
-public class Array_Inserting {
+//Check this class again
+public class Array_Inserting_Recheck {
 
     public static void main(String[] args) {
         //Duplicate Zeroes
