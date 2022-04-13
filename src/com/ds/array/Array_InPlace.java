@@ -20,12 +20,12 @@ public class Array_InPlace {
 
         //4   Sort Array By Parity
         int[] sortByParityIp = {0, 1, 0, 5, 13};
-        System.out.println("Moving all the zeroes to the end: " + Arrays.toString(sortByParity(sortByParityIp)));
+        System.out.println("Moving all even to the end: " + Arrays.toString(sortByParity(sortByParityIp)));
 
         //5 Remove Element k from Array
         int[] remElemIp = {0, 1, 0, 5, 13};
-        int element = 3;
-        System.out.println("Moving all the zeroes to the end: " + removeElementK(remElemIp, element));
+        int element = 0;
+        System.out.println("Remove Element k we are left with element count : " + removeElementK(remElemIp, element));
     }
 
     //5 Remove Element k from Array
