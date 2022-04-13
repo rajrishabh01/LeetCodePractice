@@ -29,12 +29,63 @@ public class Array_revision {
         int[] inPlaceDeletionArray = {0, 0, 0, 1, 1, 1, 2, 2};
         System.out.println("In place deletion of duplicates - "
                 + Arrays.toString(inPlaceDeletion(inPlaceDeletionArray)));
+
+        //3 Move Zeroes
+        int[] moveZeroesIp = {0, 1, 0, 5, 13};
+        System.out.println("Moving all the zeroes to the end: " + Arrays.toString(moveZeroes(moveZeroesIp)));
+
+        //4   Sort Array By Parity
+        int[] sortByParityIp = {0, 12, 5, 15, 32, 35};
+        System.out.println("Moving all odd to the end: " + Arrays.toString(sortByParity(sortByParityIp)));
+
+        //5 Remove Element k from Array
+        int[] remElemIp = {0, 1, 0, 5, 13};
+        int element = 0;
+        System.out.println("Remove Element k we are left with element count : " + removeElementK(remElemIp, element));
+
+    }
+
+    private static int removeElementK(int[] remElemIp, int element) {
+        int count = 0;
+        for (int i = 0; i < remElemIp.length; i++) {
+            if (remElemIp[i] != element) {
+                remElemIp[count++] = remElemIp[i];
+            }
+        }
+        return count;
+    }
+
+    private static int[] sortByParity(int[] input) {
+        int index = 0;
+        for (int i = 0; i < input.length; i++) {
+            if (input[i] % 2 == 0) {
+                int temp = input[index];
+                input[index++] = input[i];
+                input[i] = temp;
+            }
+        }
+        return input;
+    }
+
+    private static int[] moveZeroes(int[] input) {
+        int count = 0;
+        for (int i = 0; i < input.length; i++) {
+            if (input[i] != 0) {
+                input[count++] = input[i];
+            }
+        }
+        int k = input.length - count;
+        for (int j = input.length - 1; j > k; j--) {
+            input[j] = 0;
+        }
+
+        return input;
     }
 
     private static int[] inPlaceDeletion(int[] input) {
-        int count =1;
-        for(int i=1; i< input.length; i++){
-            if(input[i-1] != input[i])
+        int count = 1;
+        for (int i = 1; i < input.length; i++) {
+            if (input[i - 1] != input[i])
                 input[count++] = input[i];
         }
 
@@ -74,7 +125,7 @@ public class Array_revision {
         for (int i = 0; i < input.length; i++) {
             if (input[i] == 1) {
                 count++;
-                max = max > count ? max : count;
+                max = Math.max(max, count);
             } else
                 count = 0;
         }

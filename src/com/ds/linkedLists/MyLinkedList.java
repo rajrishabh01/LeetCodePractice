@@ -88,6 +88,7 @@ public class MyLinkedList {
         }
         Node node = head;
         Node newNode = new Node(val);
+        //stop before index = 1, because we need to
         while(null != node && index >1){
             node = node.next;
             index--;
