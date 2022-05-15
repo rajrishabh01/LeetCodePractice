@@ -5,9 +5,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class MyLinkedList {
-    static class Node {
-        int value;
-        Node next;
+    public static class Node {
+        public int value;
+        public Node next;
 
         Node(int value){
             this.value = value;
