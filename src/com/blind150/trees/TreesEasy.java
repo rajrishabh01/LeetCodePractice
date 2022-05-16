@@ -17,10 +17,57 @@ public class TreesEasy {
         tree.insert(51);
 
         tree.readTree();
-        //invertBinaryTree(tree);
+        //1 invertBinaryTree(tree);
 
         //2 Maximum Depth of a Binary Tree
         //maxDepth(tree);
+
+        //3 Diameter of a Binary Tree
+        //diameterTree(tree);
+    }
+
+    //4 Balanced Tree
+    static class balTree {
+        boolean result;
+        public boolean isBalanced(TreeNode root) {
+            result = true;
+            maxDepthBal(root);
+            return result;
+
+        }
+
+        public int maxDepthBal(TreeNode root){
+            if(root == null || !result) return 0;
+
+            int left = maxDepthBal(root.left);
+            int right = maxDepthBal(root.right);
+
+            if(Math.abs(left - right) > 1)
+                result = false;
+
+            return Math.max(left, right) +1;
+        }
+    }
+
+    //3 Diameter of tree
+    static class Diameter{
+        int max;
+        public int diameterTree(TreeNode root){
+            max = 0;
+            maxDepthDia(root);
+            return max;
+        }
+
+        private int maxDepthDia(TreeNode root) {
+            if(root == null) return 0;
+
+            int left = maxDepthDia(root.left);
+            int right = maxDepthDia(root.right);
+
+            max = Math.max(max, left+right);
+
+            return Math.max(left, right) +1;
+        }
     }
 
     //1 Invert Binary Tree
