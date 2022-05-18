@@ -26,7 +26,30 @@ public class AlgoExpertMedium {
         int[] monoIp = {-1,-2,-3,5};
         System.out.println("This is a monotonic array " + monotonicArray(monoIp));
 
+        //Longest Peak
+        int[] longPeakIp = {1,2,3,4,1,0,3};
+        System.out.println("The longest peak is " + longestPeak(monoIp));
 
+    }
+
+    //Longest Peak
+    private static int longestPeak(int[] A) {
+        int i=1;
+        int maxLength = 0;
+
+        while(i < A.length){
+            int increase = 0, decrease = 0;
+
+            while(i < A.length && A[i-1] < A[i]) {i++; increase++;}
+            while(i < A.length && A[i-1] > A[i]) {i++; decrease++;}
+
+            if(increase >0 && decrease >0) maxLength = Math.max(maxLength,
+                    increase+decrease+1);
+            while(i<A.length && A[i-1] == A[i]) i++;
+
+        }
+
+        return maxLength;
     }
 
     //Monotonic Array
