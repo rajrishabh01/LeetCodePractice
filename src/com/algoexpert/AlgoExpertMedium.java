@@ -7,6 +7,10 @@ import java.util.List;
 
 public class AlgoExpertMedium {
     public static void main(String[] args) {
+        //Array of Products
+        int[] arrProducts = {5,4,1,2};
+        System.out.println("The array of products are " + Arrays.toString(arrayOfProducts(arrProducts)));
+
         //3 Sum
         int[] inputthree = {10,-5,4,-16,-5,12};
         System.out.println("The 3 sum output here is " + threeSum(inputthree, 0));
@@ -108,6 +112,7 @@ public class AlgoExpertMedium {
         return resultArr;
     }
 
+    //Three Sum
     private static List<Integer[]> threeSum(int[] inputthree, int target) {
         Arrays.sort(inputthree);
         List<Integer[]> answer = new ArrayList<>();
@@ -129,6 +134,23 @@ public class AlgoExpertMedium {
                 }
             }
         }
+        return answer;
+    }
+
+    public static int[] arrayOfProducts(int[] array) {
+        int[] answer = new int[array.length];
+        int leftProduct =1;
+        for(int i = 0; i<array.length;i++){
+            answer[i] = leftProduct;
+            leftProduct *= array[i];
+        }
+
+        int rightProduct = 1;
+        for(int i = array.length-1; i>=0 ;i--){
+            answer[i] *= rightProduct;
+            rightProduct *= array[i];
+        }
+
         return answer;
     }
 }
